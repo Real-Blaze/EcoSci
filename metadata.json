@@ -1,5 +1,8 @@
 {
   "name": "EcoSci Assistant",
   "description": "An intelligent, scientist-grade AI assistant for plant identification and environmental education, featuring Google Search grounding and accurate data.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
 }

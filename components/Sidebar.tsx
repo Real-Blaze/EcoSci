@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChatSession } from '../types';
-import { MessageSquarePlus, MessageSquare, Leaf, Trash2, Microscope, BookOpen, Award, NotebookPen } from 'lucide-react';
+import { MessageSquarePlus, MessageSquare, Leaf, Trash2, Microscope, BookOpen, Award, NotebookPen, Users } from 'lucide-react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -10,8 +10,8 @@ interface SidebarProps {
   onNewChat: () => void;
   onDeleteChat: (e: React.MouseEvent, id: string) => void;
   setIsOpen: (open: boolean) => void;
-  viewMode: 'chat' | 'gallery' | 'journal';
-  setViewMode: (mode: 'chat' | 'gallery' | 'journal') => void;
+  viewMode: 'chat' | 'gallery' | 'journal' | 'community';
+  setViewMode: (mode: 'chat' | 'gallery' | 'journal' | 'community') => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ 
@@ -68,6 +68,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
                  <div className="flex-1">
                      <span className={`block font-bold text-sm ${viewMode === 'chat' ? 'text-green-900' : 'text-gray-700'}`}>Current Investigation</span>
                      <span className="text-[10px] text-gray-500">Active Lab</span>
+                 </div>
+             </button>
+
+             <button 
+                onClick={() => { setViewMode('community'); if (window.innerWidth < 768) setIsOpen(false); }}
+                className={`w-full flex items-center gap-4 p-3.5 rounded-xl transition-all duration-200 border text-left ${
+                    viewMode === 'community' 
+                    ? 'bg-indigo-50 border-indigo-200 shadow-sm' 
+                    : 'bg-white border-gray-100 hover:border-indigo-200 hover:shadow-sm'
+                }`}
+             >
+                 <div className={`p-2.5 rounded-full ${viewMode === 'community' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-500'}`}>
+                    <Users size={20} />
+                 </div>
+                 <div className="flex-1">
+                     <span className={`block font-bold text-sm ${viewMode === 'community' ? 'text-indigo-900' : 'text-gray-700'}`}>Community Bench</span>
+                     <span className="text-[10px] text-gray-500">3D Phenotyping</span>
                  </div>
              </button>
 
@@ -160,7 +177,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Footer */}
         <div className="p-4 border-t border-gray-100 text-[10px] text-gray-400 text-center font-medium bg-gray-50/50">
-            EcoSci Expedition OS v2.0
+            EcoSci Expedition OS v2.1
         </div>
         </aside>
     </>

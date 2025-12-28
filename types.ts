@@ -1,3 +1,4 @@
+
 export enum Role {
   USER = 'user',
   MODEL = 'model'
@@ -32,9 +33,12 @@ export interface Message {
   suggestions?: string[];
 }
 
+export type MissionType = 'botanist' | 'zoologist' | 'geologist' | 'ecologist';
+
 export interface ChatSession {
   id: string;
   title: string;
+  missionType?: MissionType;
   messages: Message[];
   updatedAt: number;
 }
@@ -59,8 +63,29 @@ export interface Badge {
 
 export interface UserProfile {
   name: string;
+  bio: string;
+  specialization: string;
+  avatar: string;
+  xp: number; // Experience Points
+  level: number;
   streakDays: number;
   lastLoginDate: string; // YYYY-MM-DD
   badges: Badge[];
   observationsCount: number;
+}
+
+// Social Types
+export interface Post {
+    id: number;
+    userId: string;
+    user: string;
+    avatar: string;
+    title: string;
+    description: string;
+    image: string;
+    likes: number;
+    comments: number;
+    timestamp: string; // or number
+    isLiked?: boolean;
+    tags: string[];
 }
